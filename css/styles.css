@@ -8,6 +8,8 @@ font-family: 'Roboto', sans-serif;*/
   --team-link-color: #afb1b8;
   --footer-bcg-color: #2f303a;
   --hero-bcg-color: rgba(47, 48, 58, 0.8);
+  --time-animation: 250ms;
+  --time-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 html {
@@ -36,14 +38,20 @@ a {
 
 .page-header {
   padding: 24px 0px;
-  margin-bottom: 95px;
+  /* border: 1px solid #ececec; */
+  /* margin-bottom: 95px; */
 }
 .container {
+  margin-left: auto;
+  margin-right: auto;
   width: 1200px;
   padding-left: 15px;
   padding-right: 15px;
-  margin-left: auto;
-  margin-right: auto;
+}
+.main-nav {
+  display: flex;
+  align-items: center;
+  /* border: 1px solid #ececec; */
 }
 .content-box {
   margin-right: 30px;
@@ -75,7 +83,15 @@ a {
   color: var(--primary-white-color);
   font-style: normal;
 }
-
+.nav-link.current::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 4px;
+  background: var(--accent-text);
+  border-radius: 2px;
+  transform: translateY(32px);
+}
 .mail-link:hover,
 .mail-link:focus,
 .tel-link:hover,
@@ -143,6 +159,8 @@ p {
   line-height: 1.14;
   letter-spacing: 0.02em;
   color: var(--text-title-color);
+  padding-top: 32px;
+  padding-bottom: 32px;
 }
 .link {
   color: var(--accent-text);
@@ -158,12 +176,13 @@ p {
   margin-right: 30px;
 }
 .icon-envelop {
-  width: 16px;
-  height: 12px;
+  width: 18px;
+  height: 14px;
 }
 .icon-header {
   margin-right: 10px;
   fill: currentColor;
+  vertical-align: middle;
 }
 
 .link-mail,
@@ -184,8 +203,8 @@ p {
   color: var(--main-text-color);
 }
 .icon-phone {
-  width: 10px;
-  height: 15px;
+  width: 18px;
+  height: 14px;
 }
 
 /*Герой*/
@@ -296,6 +315,7 @@ p {
 .service-item {
   width: calc((100% - 30px) / 3);
   margin-right: 30px;
+  position: relative;
 }
 .service-description {
   color: var(--primary-white-color);
@@ -306,6 +326,14 @@ p {
   text-align: center;
   letter-spacing: 0.03em;
   text-transform: uppercase;
+  display: flex;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 70px;
+  justify-content: center;
+  align-items: center;
 }
 /*Наша команда*/
 .section-name {
@@ -357,6 +385,11 @@ p {
   height: 44px;
   width: 44px;
   border-radius: 50%;
+  background-color: var(--primary-white-color);
+  color: #afb1b8;
+  fill: currentColor;
+  transition: background-color var(--time-animation) var(--time-function),
+    color var(--time-animation) var(--time-function);
 }
 
 .social-networks:hover,
@@ -385,6 +418,8 @@ p {
   box-sizing: border-box;
   border-radius: 4px;
   fill: #afb1b8;
+  transition: border var(--time-animation) var(--time-function),
+    color var(--time-animation) var(--time-function);
 }
 .item-logo:hover,
 .item-logo:focus {
@@ -419,7 +454,10 @@ p {
 .footer-adress {
   font-style: normal;
 }
-
+.footer-adress .mail:hover,
+.footer-adress .mail:focus {
+  color: var(--accent-text);
+}
 .address-text {
   font-family: Roboto, sans-serif;
   font-style: normal;
@@ -483,11 +521,11 @@ b {
   justify-content: center;
   list-style: none;
   margin-bottom: 34px;
+  margin-top: 84px;
 }
 
 .btn:not(:last-child) {
   margin-right: 8px;
-  padding: 6, 22;
 }
 
 .button-second {
@@ -500,6 +538,8 @@ b {
   line-height: 1.62;
   letter-spacing: 0.03em;
   padding: 6px 22px;
+  box-shadow: none;
+  transition: color var(--time-animation);
 }
 
 .button-second:hover,
@@ -513,6 +553,15 @@ b {
   font-size: 18px;
   line-height: 1.56;
   letter-spacing: 0.03em;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 63px 24px;
+  background: rgba(33, 150, 243, 0.9);
+  transform: translateY(100%);
+  transition: transform var(--time-animation) var(--time-function);
 }
 .title-card {
   margin-bottom: 4px;
@@ -547,15 +596,11 @@ ul.list.button-list {
 }
 .element {
   background: var(--primary-white-color);
-  border: 1px solid #eeeeee;
   width: 370px;
   margin: 15px;
-  /* padding: 20px; */
-
-  /* background: var(--primary-white-color);
-  border: 1px solid #eeeeee;
-  width: 370px;
-  margin: 15px; */
+  border: 6px solid #eeeeee;
+  box-shadow: none;
+  transition: box-shadow var(--time-animation) var(--time-function);
 }
 .element:hover {
   box-shadow: 1px 4px 6px rgba(0, 0, 0, 0.16), 0px 4px 4px rgba(0, 0, 0, 0.06),
@@ -563,4 +608,11 @@ ul.list.button-list {
 }
 .element-item {
   padding: 20px;
+}
+.work-list-img {
+  position: relative;
+  overflow: hidden;
+}
+.card-item .element:hover .card-hover {
+  transform: translateY(0);
 }
